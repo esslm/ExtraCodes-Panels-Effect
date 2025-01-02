@@ -1,0 +1,55 @@
+.panel-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--panel-gap);
+  padding: var(--panel-padding);
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  position: relative;
+  min-height: 400px;
+}
+
+.panel {
+  position: relative;
+  padding: var(--panel-padding);
+  background: var(--panel-bg);
+  border-radius: var(--panel-radius);
+  min-height: var(--panel-min-height);
+  z-index: 1;
+}
+
+.floating-highlight {
+  position: absolute;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  border-radius: var(--panel-radius);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.floating-highlight.snapped {
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translate(-50%, -50%) scale(1.12);
+  opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+  .panel-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --panel-padding: 1rem;
+    --panel-min-height: 8rem;
+  }
+  
+  .panel-container {
+    grid-template-columns: 1fr;
+  }
+}
